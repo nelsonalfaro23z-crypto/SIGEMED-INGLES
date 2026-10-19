@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #001b54; /* Fondo azul oscuro corporativo de SIGEMED */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card-container {
+  background: #ffffff;
+  padding: 45px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+}
+
+.header-icon {
+  background-color: #e8f0fe;
+  color: #002166;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin: 0 auto 20px;
+}
+
+h2 {
+  color: #001f60;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.description {
+  color: #556070;
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+
+.verify-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #001f60;
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper .icon {
+  position: absolute;
+  left: 14px;
+  color: #001f60;
+  font-size: 16px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 14px 12px 42px;
+  border: 1px solid #c4cdd5;
+  border-radius: 8px;
+  font-size: 16px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  color: #333333;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-wrapper input:focus {
+  border-color: #002166;
+  box-shadow: 0 0 0 3px rgba(0, 33, 102, 0.15);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 13px;
+  background-color: #002166;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-bottom: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #001747;
+}
+
+.btn-submit:active {
+  transform: scale(0.99);
+}
+
+.btn-cancel {
+  width: 100%;
+  padding: 12px;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.back-link {
+  margin-top: 22px;
+  display: inline-block;
+}
+
+.back-link a {
+  color: #001f60;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+.security-badge {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eceff4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.security-badge i {
+  font-size: 26px;
+  color: #001f60;
+}
+
+.security-badge .text {
+  display: flex;
+  flex-direction: column;
+}
+
+.security-badge .title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #001f60;
+}
+
+.security-badge .sub {
+  font-size: 11px;
+  color: #556070;
+  line-height: 1.3;
+}

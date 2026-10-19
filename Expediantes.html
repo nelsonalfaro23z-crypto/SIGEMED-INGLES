@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expedientes - SIGIMED</title>
+
+    <!-- ICONOS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Expediante.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =====================================================
+             MENÚ LATERAL
+        ====================================================== -->
+
+        <aside class="sidebar">
+
+            <!-- LOGO -->
+
+            <div class="logo-container">
+
+                <div class="logo-circle">
+                    <i class="fa-solid fa-file-medical"></i>
+                </div>
+
+                <h3>SIGIMED</h3>
+
+                <p>
+                    Sistema de Gestión<br>
+                    Clínica y Farmacéutica
+                </p>
+
+            </div>
+
+
+            <!-- MENÚ -->
+
+            <nav class="menu">
+
+                <!-- INICIO -->
+
+                <a href="Dashboard.html" class="menu-item">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Inicio
+                    </span>
+
+                </a>
+
+
+                <!-- PACIENTES -->
+
+                <a href="Pacientes.html" class="menu-item">
+
+                    <i class="fa-solid fa-user-pen"></i>
+
+                    <span>
+                        Pacientes
+                    </span>
+
+                </a>
+
+
+                <!-- CITAS -->
+
+                <a href="Citas.html" class="menu-item">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <span>
+                        Citas
+                    </span>
+
+                </a>
+
+
+                <!-- TRIAJE -->
+
+                <a href="Triaje.html" class="menu-item">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    <span>
+                        Triaje
+                    </span>
+
+                </a>
+
+
+                <!-- EXPEDIENTES -->
+
+                <a href="Expedientes.html" class="menu-item active">
+
+                    <i class="fa-solid fa-clipboard-user"></i>
+
+                    <span>
+                        Expedientes
+                    </span>
+
+                </a>
+
+            </nav>
+
+
+            <!-- CERRAR SESIÓN -->
+
+            <button
+                class="logout-btn"
+                id="logoutBtn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Cerrar Sesión
+
+            </button>
+
+        </aside>
+
+
+        <!-- =====================================================
+             CONTENIDO PRINCIPAL
+        ====================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 ENCABEZADO
+            ================================================== -->
+
+            <header class="top-header">
+
+                <div class="title-area">
+
+                    <button
+                        class="back-btn"
+                        id="backBtn">
+
+                        <i class="fa-solid fa-chevron-left"></i>
+
+                    </button>
+
+                    <div>
+
+                        <h1>
+                            Expediente de los pacientes
+                        </h1>
+
+                        <p>
+                            Consulta y gestiona el historial médico del paciente.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUSCADOR -->
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Buscar por número de expediente">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </div>
+
+
+                <!-- USUARIO -->
+
+                <div class="user-area">
+
+                    <i class="fa-solid fa-bell notification"></i>
+
+                    <div class="user-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong>
+                            María López
+                        </strong>
+
+                        <small>
+                            Recepción / Enfermería
+                        </small>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down arrow"></i>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 DATOS PRINCIPALES DEL PACIENTE
+            ================================================== -->
+
+            <section class="patient-summary">
+
+                <!-- FOTO / ICONO -->
+
+                <div class="patient-avatar">
+
+                    <i class="fa-solid fa-user"></i>
+
+                </div>
+
+
+                <!-- NOMBRE -->
+
+                <div class="summary-name">
+
+                    <h2>
+                        Carlos Ruiz
+                    </h2>
+
+                    <span class="status">
+                        Activo
+                    </span>
+
+                    <small>
+                        N° de expediente: EXP-12345678 - 9
+                    </small>
+
+                </div>
+
+
+                <!-- EDAD -->
+
+                <div class="summary-item">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                    <div>
+
+                        <span>
+                            Edad
+                        </span>
+
+                        <strong>
+                            45 años
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SEXO -->
+
+                <div class="summary-item">
+
+                    <i class="fa-solid fa-venus-mars"></i>
+
+                    <div>
+
+                        <span>
+                            Sexo
+                        </span>
+
+                        <strong>
+                            Masculino
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FECHA NACIMIENTO -->
+
+                <div class="summary-item">
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                    <div>
+
+                        <span>
+                            Fecha de nacimiento
+                        </span>
+
+                        <strong>
+                            20/9/1975
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TELÉFONO -->
+
+                <div class="summary-item">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <div>
+
+                        <span>
+                            Teléfono
+                        </span>
+
+                        <strong>
+                            +503 7538 6048
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTUALIZAR -->
+
+                <button
+                    class="update-btn"
+                    id="updateBtn">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Actualizar expediente
+
+                </button>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 INFORMACIÓN DEL PACIENTE
+            ================================================== -->
+
+            <section class="patient-info-card">
+
+                <div class="section-title">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <h2>
+                        Datos del paciente
+                    </h2>
+
+                </div>
+
+
+                <div class="patient-info">
+
+                    <div>
+
+                        <span>
+                            Nombre/s
+                        </span>
+
+                        <strong>
+                            Carlos
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Apellido/s
+                        </span>
+
+                        <strong>
+                            Ruiz
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Fecha de nacimiento
+                        </span>
+
+                        <strong>
+                            20/9/1975
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Edad
+                        </span>
+
+                        <strong>
+                            45 años
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Sexo
+                        </span>
+
+                        <strong>
+                            Masculino
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Teléfono
+                        </span>
+
+                        <strong>
+                            +503 7538 6048
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Dirección
+                        </span>
+
+                        <strong>
+                            Col. El Centro #1234
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 HISTORIAL MÉDICO
+            ================================================== -->
+
+            <section class="history-card">
+
+                <!-- TABS -->
+
+                <div class="tabs">
+
+                    <button
+                        class="tab active"
+                        id="historyTab">
+
+                        <i class="fa-solid fa-file-lines"></i>
+
+                        Historial Médico
+
+                    </button>
+
+
+                    <button
+                        class="tab"
+                        id="consultationsTab">
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        Consultas Anteriores
+
+                    </button>
+
+                </div>
+
+
+                <!-- CABECERA HISTORIAL -->
+
+                <div class="history-header">
+
+                    <h2>
+                        Historial Médico
+                    </h2>
+
+                    <select id="dateFilter">
+
+                        <option>
+                            Rango de fechas
+                        </option>
+
+                        <option>
+                            Todos
+                        </option>
+
+                        <option>
+                            Último mes
+                        </option>
+
+                        <option>
+                            Últimos 6 meses
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TABLA -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Fecha
+                                </th>
+
+                                <th>
+                                    Tipo de atención
+                                </th>
+
+                                <th>
+                                    Motivo d consulta
+                                </th>
+
+                                <th>
+                                    Diagnóstico
+                                </th>
+
+                                <th>
+                                    Médico
+                                </th>
+
+                                <th>
+                                    Acciones
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="historyTable">
+
+                            <tr>
+
+                                <td>
+                                    15/05/2026
+                                </td>
+
+                                <td>
+                                    <span class="consultation">
+                                        Consulta
+                                    </span>
+                                </td>
+
+                                <td>
+                                    Dolor abdominal
+                                </td>
+
+                                <td>
+                                    Gastritis
+                                </td>
+
+                                <td>
+                                    Dr. Alberto Torres
+                                </td>
+
+                                <td>
+
+                                    <button class="detail-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                        Ver detalle
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    02/04/2026
+                                </td>
+
+                                <td>
+                                    <span class="consultation">
+                                        Consulta
+                                    </span>
+                                </td>
+
+                                <td>
+                                    Fiebre
+                                </td>
+
+                                <td>
+                                    Infección viral
+                                </td>
+
+                                <td>
+                                    Dra. Mariana López
+                                </td>
+
+                                <td>
+
+                                    <button class="detail-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                        Ver detalle
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    10/01/2026
+                                </td>
+
+                                <td>
+                                    <span class="consultation">
+                                        Consulta
+                                    </span>
+                                </td>
+
+                                <td>
+                                    Control general
+                                </td>
+
+                                <td>
+                                    Sin diagnóstico
+                                </td>
+
+                                <td>
+                                    Dr. Carlos Méndez
+                                </td>
+
+                                <td>
+
+                                    <button class="detail-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                        Ver detalle
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    22/11/2025
+                                </td>
+
+                                <td>
+                                    <span class="consultation">
+                                        Consulta
+                                    </span>
+                                </td>
+
+                                <td>
+                                    Dolor de cabeza
+                                </td>
+
+                                <td>
+                                    Cefalea tensional
+                                </td>
+
+                                <td>
+                                    Dra. Mariana López
+                                </td>
+
+                                <td>
+
+                                    <button class="detail-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                        Ver detalle
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    05/08/2025
+                                </td>
+
+                                <td>
+                                    <span class="consultation">
+                                        Consulta
+                                    </span>
+                                </td>
+
+                                <td>
+                                    Tos y malestar
+                                </td>
+
+                                <td>
+                                    Infección respiratoria
+                                </td>
+
+                                <td>
+                                    Dr. Alberto Torres
+                                </td>
+
+                                <td>
+
+                                    <button class="detail-btn">
+                                        <i class="fa-regular fa-eye"></i>
+                                        Ver detalle
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- PAGINACIÓN -->
+
+                <div class="pagination">
+
+                    <span id="userCount">
+                        Mostrar 1 a 5 de 5 usuarios
+                    </span>
+
+                    <div class="pages">
+
+                        <button>
+                            &lt;
+                        </button>
+
+                        <button class="page-active">
+                            1
+                        </button>
+
+                        <button>
+                            &gt;
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ESPACIOS LATERALES DE LA IMAGEN
+            ================================================== -->
+
+            <div class="side-decoration"></div>
+
+            <div class="side-decoration bottom"></div>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="Expediente.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGEMED - Mi Perfil y Usuarios</title>
+    <link rel="stylesheet" href="Mi_Perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="Imagenes/LOGO_SIGEMED-FONDO.jpeg" alt="SIGEMED Logo" class="sidebar-logo">
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="Dashboard Recepción.php" class="menu-item"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="Nuevo Paciente.html" class="menu-item"><i class="fa-solid fa-user-plus"></i> Nuevo Paciente</a>
+            <a href="Agenda de Citas_Enfer.html" class="menu-item"><i class="fa-solid fa-calendar-check"></i> Agenda de Citas</a>
+            <a href="Triaje.html" class="menu-item"><i class="fa-solid fa-notes-medical"></i> Triaje</a>
+            <a href="Expedientes_enfer.html" class="menu-item"><i class="fa-solid fa-folder-open"></i> Expedientes</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="Iniciar Sesión.html" class="btn-logout" id="btnLogout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-title">
+                <h1>
+                    <a href="Dashboard Recepción.php" class="btn-back"><i class="fa-solid fa-chevron-left"></i></a> 
+                    Perfil de Usuario
+                </h1>
+                <p class="subtitle">Gestioná tu información personal y consultá los demás perfiles del sistema.</p>
+            </div>
+
+            <div class="header-right">
+                <a href="Notificaciones_enfer.html" class="notification-badge" title="Ver Notificaciones">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="dot"></span>
+                </a>
+
+                <div class="user-profile active-profile">
+                    <div class="avatar-circle"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-details">
+                        <span class="user-name" id="topNombreUsuario">Maria López</span>
+                        <span class="user-sub">Recepción / Enfermería</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- SECCIÓN PRINCIPAL -->
+        <div class="profile-container">
+            
+            <!-- TARJETA DEL USUARIO ACTUAL -->
+            <div class="profile-card-main">
+                <div class="profile-header-bg"></div>
+                <div class="profile-avatar-large">
+                    <i class="fa-solid fa-user-nurse"></i>
+                </div>
+                <div class="profile-info-basic">
+                    <h2 id="cardNombreUsuario">Maria López</h2>
+                    <span class="role-tag">Enfermera / Recepción</span>
+                    <p class="status-online"><i class="fa-solid fa-circle"></i> Sesión Activa</p>
+                </div>
+
+                <div class="profile-details-grid">
+                    <div class="detail-item">
+                        <span class="label"><i class="fa-solid id-card"></i> ID de Usuario:</span>
+                        <span class="value" id="txtIdUsuario">#1</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label"><i class="fa-solid fa-envelope"></i> Correo Electrónico:</span>
+                        <span class="value" id="txtCorreoUsuario">maria.lopez@gmail.com</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label"><i class="fa-solid fa-phone"></i> Teléfono:</span>
+                        <span class="value">+503 7123-4567</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label"><i class="fa-solid fa-hospital-user"></i> Área Asignada:</span>
+                        <span class="value">Triaje y Recepción General</span>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn-primary" id="btnEditProfile"><i class="fa-solid fa-user-pen"></i> Editar Mis Datos</button>
+                    <button class="btn-secondary" id="btnChangePassword"><i class="fa-solid fa-key"></i> Cambiar Contraseña</button>
+                </div>
+            </div>
+
+            <!-- DIRECTORIO DE OTROS PERFILES -->
+            <div class="system-profiles-section">
+                <div class="section-header">
+                    <h3><i class="fa-solid fa-users"></i> Otros Perfiles Registrados en SIGEMED</h3>
+                    <span class="badge-total">4 Perfiles activos</span>
+                </div>
+
+                <div class="profiles-grid">
+                    <div class="other-profile-card">
+                        <div class="avatar-sm icon-blue"><i class="fa-solid fa-user-doctor"></i></div>
+                        <div class="other-info">
+                            <h4>Dr. Alberto Torres</h4>
+                            <span class="sub-role">Médico General</span>
+                            <small><i class="fa-solid fa-clock"></i> Turno: Mañana</small>
+                        </div>
+                        <span class="status-badge active">Activo</span>
+                    </div>
+
+                    <div class="other-profile-card">
+                        <div class="avatar-sm icon-green"><i class="fa-solid fa-user-nurse"></i></div>
+                        <div class="other-info">
+                            <h4>Licda. Sofía Ramírez</h4>
+                            <span class="sub-role">Enfermería General</span>
+                            <small><i class="fa-solid fa-clock"></i> Turno: Tarde</small>
+                        </div>
+                        <span class="status-badge active">Activo</span>
+                    </div>
+
+                    <div class="other-profile-card">
+                        <div class="avatar-sm icon-amber"><i class="fa-solid fa-pills"></i></div>
+                        <div class="other-info">
+                            <h4>Carlos Mendoza</h4>
+                            <span class="sub-role">Encargado de Farmacia</span>
+                            <small><i class="fa-solid fa-clock"></i> Turno: Completo</small>
+                        </div>
+                        <span class="status-badge active">Activo</span>
+                    </div>
+
+                    <div class="other-profile-card">
+                        <div class="avatar-sm icon-purple"><i class="fa-solid fa-user-gear"></i></div>
+                        <div class="other-info">
+                            <h4>Ing. Roberto Gómez</h4>
+                            <span class="sub-role">Administrador</span>
+                            <small><i class="fa-solid fa-shield"></i> Acceso Total</small>
+                        </div>
+                        <span class="status-badge active">Activo</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- MODAL: EDITAR MIS DATOS -->
+    <div class="modal-overlay" id="modalEditarPerfil" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;display:none;">
+        <div class="modal-box" style="background:white;width:100%;max-width:400px;border-radius:12px;padding:25px;display:flex;flex-direction:column;gap:16px;">
+            <h3 style="color:#002166;">Editar Mis Datos</h3>
+            <form id="formEditDatos">
+                <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+                    <label style="font-size:12px;font-weight:600;">Nombre Completo</label>
+                    <input type="text" id="inputNombreEdit" name="nombre_completo" required style="padding:9px;border:1px solid #d0d5dd;border-radius:6px;font-size:13px;outline:none;">
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:15px;">
+                    <label style="font-size:12px;font-weight:600;">Correo Electrónico</label>
+                    <input type="email" id="inputCorreoEdit" name="correo" required style="padding:9px;border:1px solid #d0d5dd;border-radius:6px;font-size:13px;outline:none;">
+                </div>
+                <div style="display:flex;justify-content:flex-end;gap:10px;">
+                    <button type="button" id="btnCerrarEditModal" style="padding:8px 14px;border:1px solid #d0d5dd;background:#f2f4f7;border-radius:6px;cursor:pointer;font-weight:600;">Cancelar</button>
+                    <button type="submit" style="padding:8px 14px;background:#1d4ed8;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: CAMBIAR CONTRASEÑA -->
+    <div class="modal-overlay" id="modalPassModal" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;display:none;">
+        <div class="modal-box" style="background:white;width:100%;max-width:400px;border-radius:12px;padding:25px;display:flex;flex-direction:column;gap:16px;">
+            <h3 style="color:#002166;">Cambiar Contraseña</h3>
+            <form id="formPassChange">
+                <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">
+                    <label style="font-size:12px;font-weight:600;">Contraseña Actual</label>
+                    <input type="password" id="passActual" name="contrasena_actual" required style="padding:9px;border:1px solid #d0d5dd;border-radius:6px;font-size:13px;outline:none;">
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:15px;">
+                    <label style="font-size:12px;font-weight:600;">Contraseña Nueva</label>
+                    <input type="password" id="passNueva" name="contrasena_nueva" required style="padding:9px;border:1px solid #d0d5dd;border-radius:6px;font-size:13px;outline:none;">
+                </div>
+                <div style="display:flex;justify-content:flex-end;gap:10px;">
+                    <button type="button" id="btnCerrarPassModal" style="padding:8px 14px;border:1px solid #d0d5dd;background:#f2f4f7;border-radius:6px;cursor:pointer;font-weight:600;">Cancelar</button>
+                    <button type="submit" style="padding:8px 14px;background:#1d4ed8;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">Actualizar Contraseña</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="Mi_Perfil.js"></script>
+</body>
+</html>

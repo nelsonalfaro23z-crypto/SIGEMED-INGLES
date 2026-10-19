@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGEMED - Notificaciones</title>
+    <link rel="stylesheet" href="Notificaciones_enfer.css">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- SIDEBAR (Menú lateral de Recepción/Enfermería) -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="Imagenes/LOGO_SIGEMED-FONDO.jpeg" alt="SIGEMED Logo" class="sidebar-logo">
+        </div>
+
+        <nav class="sidebar-menu">
+            <!-- INICIO -->
+            <a href="Dashboard Recepción.html" class="menu-item">
+                <i class="fa-solid fa-house"></i> Inicio
+            </a>
+
+            <!-- NUEVO PACIENTE -->
+            <a href="Nuevo Paciente.html" class="menu-item">
+                <i class="fa-solid fa-user-plus"></i> Nuevo Paciente
+            </a>
+
+            <!-- AGENDA DE CITAS -->
+            <a href="Agenda de Citas_Enfer.html" class="menu-item">
+                <i class="fa-solid fa-calendar-check"></i> Agenda de Citas
+            </a>
+
+            <!-- TRIAJE -->
+            <a href="Triaje.html" class="menu-item">
+                <i class="fa-solid fa-notes-medical"></i> Triaje
+            </a>
+
+            <!-- EXPEDIENTES -->
+            <a href="Expedientes_enfer.html" class="menu-item">
+                <i class="fa-solid fa-folder-open"></i> Expedientes
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="Iniciar Sesión.html" class="btn-logout" id="btnLogout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-title">
+                <h1>
+                    <a href="Dashboard Recepción.html" class="btn-back"><i class="fa-solid fa-chevron-left"></i></a> 
+                    Centro de Notificaciones
+                </h1>
+                <p class="subtitle">Revisá los avisos, alertas de triaje y recordatorios del sistema.</p>
+            </div>
+
+            <div class="header-right">
+                <!-- Icono de campanita activo -->
+                <div class="notification-badge active-page" title="Notificaciones">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="dot"></span>
+                </div>
+
+                <div class="user-profile">
+                    <div class="avatar-circle"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-details">
+                        <span class="user-name">Maria López</span>
+                        <span class="user-sub">Recepción / Enfermería</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- PANEL PRINCIPAL DE NOTIFICACIONES -->
+        <div class="notifications-container">
+            
+            <!-- BARRA DE ACCIONES Y FILTROS -->
+            <div class="notifications-toolbar">
+                <div class="filter-tabs">
+                    <button class="tab-btn active" data-filter="all">Todas <span class="badge-count">5</span></button>
+                    <button class="tab-btn" data-filter="unread">No leídas <span class="badge-count unread-bg">3</span></button>
+                    <button class="tab-btn" data-filter="urgent">Urgentes</button>
+                </div>
+
+                <div class="toolbar-actions">
+                    <button type="button" class="btn-secondary" id="btnMarkAllRead">
+                        <i class="fa-solid fa-check-double"></i> Marcar todas como leídas
+                    </button>
+                    <button type="button" class="btn-secondary text-danger" id="btnClearAll">
+                        <i class="fa-solid fa-trash-can"></i> Limpiar historial
+                    </button>
+                </div>
+            </div>
+
+            <!-- LISTA DE NOTIFICACIONES -->
+            <div class="notifications-list">
+
+                <!-- ITEM 1: URGENTE / TRIAJE -->
+                <div class="notification-card unread urgent">
+                    <div class="notif-icon icon-red">
+                        <i class="fa-solid fa-heart-circle-exclamation"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <span class="notif-title">Triaje de Emergencia Prioritaria</span>
+                            <span class="notif-time">Hace 5 min</span>
+                        </div>
+                        <p class="notif-message">
+                            El paciente <strong>Carlos Ruiz</strong> ingresó con presión arterial elevada ($160/100\text{ mmHg}$). Requiere atención inmediata en el Área de Triaje.
+                        </p>
+                        <div class="notif-actions">
+                            <a href="Triaje.html" class="btn-notif-action primary">Ir a Triaje</a>
+                            <button class="btn-notif-action secondary btnMarkSingle">Marcar como leída</button>
+                        </div>
+                    </div>
+                    <span class="unread-dot"></span>
+                </div>
+
+                <!-- ITEM 2: NUEVA CITA -->
+                <div class="notification-card unread">
+                    <div class="notif-icon icon-blue">
+                        <i class="fa-solid fa-calendar-plus"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <span class="notif-title">Nueva Cita Agendada</span>
+                            <span class="notif-time">Hace 25 min</span>
+                        </div>
+                        <p class="notif-message">
+                            Se agendó una cita de control general para <strong>Ana María Gómez</strong> con el Dr. Alberto Torres para hoy a las 2:30 PM.
+                        </p>
+                        <div class="notif-actions">
+                            <a href="Agenda de Citas_Enfer.html" class="btn-notif-action primary">Ver Citas</a>
+                            <button class="btn-notif-action secondary btnMarkSingle">Marcar como leída</button>
+                        </div>
+                    </div>
+                    <span class="unread-dot"></span>
+                </div>
+
+                <!-- ITEM 3: EXPEDIENTE ACTUALIZADO -->
+                <div class="notification-card unread">
+                    <div class="notif-icon icon-amber">
+                        <i class="fa-solid fa-folder-minus"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <span class="notif-title">Actualización de Expediente</span>
+                            <span class="notif-time">Hace 1 hora</span>
+                        </div>
+                        <p class="notif-message">
+                            Se agregaron nuevos resultados de laboratorio al expediente de <strong>EXP-12345678 - 9</strong>.
+                        </p>
+                        <div class="notif-actions">
+                            <a href="Expedientes_enfer.html" class="btn-notif-action primary">Ver Expediente</a>
+                            <button class="btn-notif-action secondary btnMarkSingle">Marcar como leída</button>
+                        </div>
+                    </div>
+                    <span class="unread-dot"></span>
+                </div>
+
+                <!-- ITEM 4: RECORDATORIO DEL SISTEMA (LEÍDA) -->
+                <div class="notification-card">
+                    <div class="notif-icon icon-green">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <span class="notif-title">Registro Exitoso de Paciente</span>
+                            <span class="notif-time">Hace 3 horas</span>
+                        </div>
+                        <p class="notif-message">
+                            El paciente <strong>José Roberto Hernández</strong> fue guardado en el sistema con el expediente <strong>EXP-98765432 - 1</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ITEM 5: SISTEMA (LEÍDA) -->
+                <div class="notification-card">
+                    <div class="notif-icon icon-gray">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="notif-content">
+                        <div class="notif-header">
+                            <span class="notif-title">Mantenimiento de Sistema</span>
+                            <span class="notif-time">Ayer, 6:00 PM</span>
+                        </div>
+                        <p class="notif-message">
+                            Se realizó el respaldo automático de la base de datos de SIGEMED exitosamente.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="Notificaciones_enfer.js"></script>
+</body>
+</html>

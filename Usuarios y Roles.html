@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGEMED - Gestión de Usuarios y Roles</title>
+    <link rel="stylesheet" href="Usuarios y Roles.css">
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-circle-container">
+                <img src="Imagenes/Emblema médico SIGEMED minimalista.png" alt="SIGEMED Logo" class="sidebar-logo">
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="Dashboard Administrador.html" class="menu-item">
+                <i class="fa-solid fa-house"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="Usuarios y Roles.html" class="menu-item active">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Usuarios y Roles</span>
+            </a>
+            <!-- VINCULADO DIRECTO A PACIENTES.HTML -->
+            <a href="Pacientes.html" class="menu-item">
+                <i class="fa-solid fa-user-injured"></i>
+                <span>Pacientes</span>
+            </a>
+            <a href="Agenda de Citas.html" class="menu-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Citas</span>
+            </a>
+            <a href="Consultas.html" class="menu-item">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span>Consultas</span>
+            </a>
+            <a href="Laboratorio.html" class="menu-item">
+                <i class="fa-solid fa-flask"></i>
+                <span>Laboratorio</span>
+            </a>
+            <a href="Farmacia.html" class="menu-item">
+                <i class="fa-solid fa-pills"></i>
+                <span>Farmacia</span>
+            </a>
+            <a href="Reportes.html" class="menu-item">
+                <i class="fa-solid fa-chart-bar"></i>
+                <span>Reportes</span>
+            </a>
+            <a href="Configuracion.html" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span>Configuración</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="Iniciar Sesión.html" class="btn-logout" id="btnLogout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Cerrar Sesión</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <!-- HEADER TOP -->
+        <header class="top-header">
+            <div class="header-title">
+                <h1>Gestión de Usuarios y Roles</h1>
+                <p class="breadcrumb">Inicio <i class="fa-solid fa-chevron-right"></i> <span>Usuarios y Roles</span></p>
+            </div>
+            
+            <div class="header-right-group">
+                <div class="header-user">
+                    <i class="fa-regular fa-bell notification-icon"></i>
+                    <div class="user-avatar-circle"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-info">
+                        <span class="user-name">Administrador <i class="fa-solid fa-chevron-down"></i></span>
+                        <span class="user-role">Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- BOTÓN NUEVO USUARIO -->
+        <div class="action-bar">
+            <button class="btn-primary" onclick="window.location.href='Nuevo Usuario.html'">
+                <i class="fa-solid fa-plus"></i> Nuevo Usuario
+            </button>
+        </div>
+
+        <!-- TARJETA CONTENEDORA DE TABLA -->
+        <div class="panel-box">
+            
+            <!-- FILTROS Y BÚSQUEDA -->
+            <div class="filters-grid">
+                
+                <!-- Buscador -->
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre o usuario...">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                </div>
+
+                <!-- Filtro por Rol -->
+                <div class="select-box">
+                    <label>Filtrar por rol</label>
+                    <div class="custom-select-wrapper">
+                        <select id="filterRol">
+                            <option value="todos">Todos</option>
+                            <option value="medico">Médico</option>
+                            <option value="enfermera">Enfermera</option>
+                            <option value="farmaceutico">Farmacéutico</option>
+                            <option value="laboratorista">Laboratorista</option>
+                            <option value="administrador">Administrador</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Filtro por Estado -->
+                <div class="select-box">
+                    <label>Filtrar por estado</label>
+                    <div class="custom-select-wrapper">
+                        <select id="filterEstado">
+                            <option value="todos">Todos</option>
+                            <option value="activo">Activo</option>
+                            <option value="inactivo">Inactivo</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-icon"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TABLA DE USUARIOS -->
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Usuario</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Último acceso</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="avatar-sm"><i class="fa-solid fa-user"></i></div>
+                                    <span>Dr. Juan Pérez</span>
+                                </div>
+                            </td>
+                            <td><strong>jperez</strong></td>
+                            <td>jperez@sigemed.com</td>
+                            <td><span class="badge badge-medico">Médico</span></td>
+                            <td><span class="badge badge-activo">Activo</span></td>
+                            <td>17/8/2026 08:30 AM</td>
+                            <td>
+                                <div class="actions-wrapper">
+                                    <button class="btn-action btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="avatar-sm"><i class="fa-solid fa-user"></i></div>
+                                    <span>María López</span>
+                                </div>
+                            </td>
+                            <td><strong>mlopez</strong></td>
+                            <td>mlopez@sigemed.com</td>
+                            <td><span class="badge badge-enfermera">Enfermera</span></td>
+                            <td><span class="badge badge-activo">Activo</span></td>
+                            <td>17/8/2026 08:15 AM</td>
+                            <td>
+                                <div class="actions-wrapper">
+                                    <button class="btn-action btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="avatar-sm"><i class="fa-solid fa-user"></i></div>
+                                    <span>Carlos Ruíz</span>
+                                </div>
+                            </td>
+                            <td><strong>cruiz</strong></td>
+                            <td>cruiz@sigemed.com</td>
+                            <td><span class="badge badge-farmaceutico">Farmacéutico</span></td>
+                            <td><span class="badge badge-activo">Activo</span></td>
+                            <td>17/8/2026 07:45 AM</td>
+                            <td>
+                                <div class="actions-wrapper">
+                                    <button class="btn-action btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="avatar-sm"><i class="fa-solid fa-user"></i></div>
+                                    <span>Ana Gómez</span>
+                                </div>
+                            </td>
+                            <td><strong>agomez</strong></td>
+                            <td>agomez@sigemed.com</td>
+                            <td><span class="badge badge-laboratorista">Laboratorista</span></td>
+                            <td><span class="badge badge-activo">Activo</span></td>
+                            <td>17/8/2026 07:20 AM</td>
+                            <td>
+                                <div class="actions-wrapper">
+                                    <button class="btn-action btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="user-cell">
+                                    <div class="avatar-sm"><i class="fa-solid fa-user"></i></div>
+                                    <span>Admin Sistema</span>
+                                </div>
+                            </td>
+                            <td><strong>admin</strong></td>
+                            <td>admin@sigemed.com</td>
+                            <td><span class="badge badge-administrador">Administrador</span></td>
+                            <td><span class="badge badge-activo">Activo</span></td>
+                            <td>17/8/2026 07:00 AM</td>
+                            <td>
+                                <div class="actions-wrapper">
+                                    <button class="btn-action btn-edit"><i class="fa-solid fa-pen"></i></button>
+                                    <button class="btn-action btn-delete"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- PAGINACIÓN Y FOOTER TABLA -->
+            <div class="table-footer">
+                <span class="showing-text">Mostrar 1 a 5 de 5 usuarios</span>
+                <div class="pagination">
+                    <button class="btn-page" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="btn-page active">1</button>
+                    <button class="btn-page" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ARCHIVO JAVASCRIPT -->
+    <script src="Usuarios y Roles.js"></script>
+</body>
+</html>

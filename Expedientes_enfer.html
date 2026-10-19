@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGEMED - Expediente de los pacientes</title>
+    <link rel="stylesheet" href="Expedientes_enfer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilo para el autocompletado en la cabecera */
+        .search-box { position: relative; }
+        .autocomplete-results {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background: #fff; border: 1px solid #d0d5dd; border-radius: 8px;
+            max-height: 180px; overflow-y: auto; z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;
+        }
+        .autocomplete-item {
+            padding: 8px 12px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #f1f5f9; color: #101828;
+        }
+        .autocomplete-item:hover { background-color: #f1f5f9; }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="Dashboard Recepción.php">
+                <img src="Imagenes/LOGO_SIGEMED-FONDO.jpeg" alt="SIGEMED Logo" class="sidebar-logo">
+            </a>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="Dashboard Recepción.php" class="menu-item"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="Nuevo Paciente.html" class="menu-item"><i class="fa-solid fa-user-plus"></i> Nuevo Paciente</a>
+            <a href="Agenda de Citas_Enfer.html" class="menu-item"><i class="fa-solid fa-calendar-check"></i> Agenda de Citas</a>
+            <a href="Triaje.html" class="menu-item"><i class="fa-solid fa-notes-medical"></i> Triaje</a>
+            <a href="Expedientes_enfer.html" class="menu-item active"><i class="fa-solid fa-folder-open"></i> Expedientes</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="Iniciar Sesión.html" class="btn-logout" id="btnLogout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-title">
+                <h1><a href="Dashboard Recepción.php" class="btn-back"><i class="fa-solid fa-chevron-left"></i></a> Expediente de los pacientes</h1>
+                <p class="subtitle">Consulta y gestiona el historial médico del paciente.</p>
+            </div>
+
+            <div class="header-right">
+                <!-- BUSCADOR CON AUTOCOMPLETADO POR NOMBRE O EXPEDIENTE -->
+                <div class="search-box">
+                    <input type="text" id="inputSearchExpediente" placeholder="Buscar por nombre o expediente..." autocomplete="off">
+                    <i class="fa-solid fa-magnifying-glass icon-search"></i>
+                    <div id="resultsExpediente" class="autocomplete-results"></div>
+                </div>
+
+                <a href="Notificaciones_enfer.html" class="notification-badge" title="Ver Notificaciones">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="dot"></span>
+                </a>
+
+                <a href="Mi_Perfil.html" class="user-profile" style="text-decoration: none; color: inherit;">
+                    <div class="avatar-circle"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-details">
+                        <span class="user-name">Maria López <i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="user-sub">Recepción / Enfermería</span>
+                    </div>
+                </a>
+            </div>
+        </header>
+
+        <!-- TARJETA RESUMEN DEL PACIENTE -->
+        <section class="patient-summary-card">
+            <div class="patient-profile-main">
+                <div class="avatar-large"><i class="fa-solid fa-user"></i></div>
+                <div class="profile-info">
+                    <h2 id="cardNombrePaciente">Cargando...</h2>
+                    <span class="badge-active">Activo</span>
+                    <p class="exp-code">N° de expediente: <strong id="cardNumExpediente">EXP-00000</strong></p>
+                </div>
+            </div>
+
+            <div class="patient-quick-details">
+                <div class="quick-item">
+                    <i class="fa-solid fa-calendar"></i>
+                    <div>
+                        <span class="item-label">Edad</span>
+                        <span class="item-value" id="cardEdad">--</span>
+                    </div>
+                </div>
+
+                <div class="quick-item">
+                    <i class="fa-solid fa-mars"></i>
+                    <div>
+                        <span class="item-label">Sexo</span>
+                        <span class="item-value" id="cardGenero">--</span>
+                    </div>
+                </div>
+
+                <div class="quick-item">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <div>
+                        <span class="item-label">Fecha de nacimiento</span>
+                        <span class="item-value" id="cardFechaNac">--/--/----</span>
+                    </div>
+                </div>
+
+                <div class="quick-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <span class="item-label">Teléfono</span>
+                        <span class="item-value" id="cardTelefono">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn-update-exp" id="btnActualizarExpediente">
+                <i class="fa-solid fa-pen-to-square"></i> Actualizar expediente
+            </button>
+        </section>
+
+        <!-- GRID DE CONTENIDO PRINCIPAL -->
+        <div class="expediente-body-grid">
+            
+            <div class="left-column">
+                
+                <!-- DATOS GENERALES -->
+                <div class="panel-box">
+                    <div class="panel-header-blue">
+                        <i class="fa-solid fa-user"></i> Datos del paciente
+                    </div>
+                    <div class="patient-details-grid">
+                        <div class="detail-cell">
+                            <span class="detail-label">Nombre/s</span>
+                            <span class="detail-value" id="dtNombre">--</span>
+                        </div>
+                        <div class="detail-cell">
+                            <span class="detail-label">Apellido/s</span>
+                            <span class="detail-value" id="dtApellido">--</span>
+                        </div>
+                        <div class="detail-cell">
+                            <span class="detail-label">Fecha de nacimiento</span>
+                            <span class="detail-value" id="dtFechaNac">--/--/----</span>
+                        </div>
+                        <div class="detail-cell">
+                            <span class="detail-label">Edad</span>
+                            <span class="detail-value" id="dtEdad">--</span>
+                        </div>
+                        <div class="detail-cell">
+                            <span class="detail-label">Sexo</span>
+                            <span class="detail-value" id="dtGenero">--</span>
+                        </div>
+                        <div class="detail-cell">
+                            <span class="detail-label">Teléfono</span>
+                            <span class="detail-value" id="dtTelefono">--</span>
+                        </div>
+                        <div class="detail-cell full-width">
+                            <span class="detail-label">Dirección</span>
+                            <span class="detail-value" id="dtDireccion">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HISTORIAL MÉDICO -->
+                <div class="panel-box history-section">
+                    <div class="tab-menu">
+                        <button class="tab-btn active"><i class="fa-solid fa-file-medical"></i> Historial Médico</button>
+                    </div>
+
+                    <div class="table-header-bar">
+                        <h3>Historial Médico</h3>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Tipo de atención</th>
+                                    <th>Motivo de consulta</th>
+                                    <th>Diagnóstico</th>
+                                    <th>Médico</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableHistorialBody">
+                                <!-- Se llena dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-pagination">
+                        <span id="txtTotalHistorial">Cargando consultas...</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SECCIÓN DERECHA -->
+            <div class="right-column">
+                
+                <div class="panel-box medical-info-panel">
+                    <h3 class="panel-title-sm"><i class="fa-solid fa-clipboard-list"></i> Información médica registrada</h3>
+                    
+                    <div class="info-block">
+                        <div class="block-header text-red">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Alergias
+                        </div>
+                        <p class="block-desc" id="infoAlergias">Ninguna registrada</p>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="block-header text-blue">
+                            <i class="fa-solid fa-notes-medical"></i> Padecimientos crónicos
+                        </div>
+                        <p class="block-desc" id="infoPadecimientos">Ninguno registrado</p>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="block-header text-blue">
+                            <i class="fa-solid fa-file-pen"></i> Observaciones
+                        </div>
+                        <p class="block-desc" id="infoObservaciones">Sin observaciones registradas.</p>
+                    </div>
+                </div>
+
+                <div class="panel-box actions-panel">
+                    <h3 class="panel-title-sm"><i class="fa-solid fa-gear"></i> Acciones</h3>
+                    
+                    <button type="button" class="btn-action-full" id="btnVerHistorialCompleto">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Ver historial completo
+                    </button>
+
+                    <button type="button" class="btn-action-full" id="btnVerDetalleConsulta">
+                        <i class="fa-solid fa-file-invoice"></i> Ver detalle de consulta
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="Expedientes_enfer.js?v=3"></script>
+</body>
+</html>

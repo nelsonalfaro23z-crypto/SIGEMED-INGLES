@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGEMED - Agenda de Citas</title>
+  <link rel="stylesheet" href="Agenda de Citas.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- BARRA LATERAL (SIDEBAR) -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="Imagenes/Emblema médico SIGEMED minimalista.png" alt="SIGEMED Logo" class="logo-img">
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="Dashboard Administrador.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+          <li><a href="Usuarios y Roles.html"><i class="fa-solid fa-users-gear"></i> Usuarios y Roles</a></li>
+          <li><a href="Pacientes.html"><i class="fa-solid fa-user-doctor"></i> Pacientes</a></li>
+          <li class="active"><a href="Agenda de Citas.html"><i class="fa-regular fa-calendar-check"></i> Citas</a></li>
+          <li><a href="#"><i class="fa-solid fa-user-nurse"></i> Consultas</a></li>
+          <li><a href="#"><i class="fa-solid fa-vial"></i> Laboratorio</a></li>
+          <li><a href="#"><i class="fa-solid fa-pills"></i> Farmacia</a></li>
+          <li><a href="#"><i class="fa-solid fa-chart-line"></i> Reportes</a></li>
+          <li><a href="#"><i class="fa-solid fa-gear"></i> Configuración</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+      
+      <!-- HEADER TOP -->
+      <header class="top-header">
+        <div class="header-title-container">
+          <button class="btn-back" id="btnBack" type="button"><i class="fa-solid fa-chevron-left"></i></button>
+          <div>
+            <h1 class="page-title">Agenda de Citas</h1>
+            <p class="page-subtitle">Programa y gestiona las citas médicas de los pacientes</p>
+          </div>
+        </div>
+
+        <div class="header-user-profile">
+          <button class="btn-notification"><i class="fa-regular fa-bell"></i></button>
+          <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+          <div class="user-details">
+            <span class="user-name">María López</span>
+            <span class="user-role">Recepción / Enfermería</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- SECCIÓN SUPERIOR: FORMULARIO Y CALENDARIO -->
+      <section class="grid-top-section">
+        
+        <!-- TARJETA: AGENDA NUEVA CITA -->
+        <div class="card card-form">
+          <div class="card-title">
+            <i class="fa-regular fa-calendar-plus text-blue"></i>
+            <h2>Agenda nueva cita</h2>
+          </div>
+
+          <form id="appointmentForm" class="appointment-form">
+            <div class="form-row">
+              <div class="form-group flex-2">
+                <label for="patientSelect">Paciente</label>
+                <select id="patientSelect" required>
+                  <option value="" disabled selected>Buscar paciente por nombre o número de expediente</option>
+                  <option value="1">Maria González - EXP-001</option>
+                  <option value="2">Luis Martínez - EXP-002</option>
+                  <option value="3">Ana Torres - EXP-003</option>
+                  <option value="4">José Ramírez - EXP-004</option>
+                </select>
+              </div>
+
+              <div class="form-group flex-2">
+                <label for="doctorSelect">Médico</label>
+                <select id="doctorSelect" required>
+                  <option value="" disabled selected>Seleccionar médico</option>
+                  <option value="1">Dr. Carlos Méndez</option>
+                  <option value="2">Dra. Mariana López</option>
+                  <option value="3">Dr. Alberto Torres</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label for="dateInput">Fecha</label>
+                <input type="date" id="dateInput" required>
+              </div>
+
+              <div class="form-group flex-1">
+                <label for="timeSelect">Hora</label>
+                <select id="timeSelect" required>
+                  <option value="" disabled selected>Seleccionar hora</option>
+                  <option value="08:00">08:00 a.m.</option>
+                  <option value="08:30">08:30 a.m.</option>
+                  <option value="09:00">09:00 a.m.</option>
+                  <option value="09:30">09:30 a.m.</option>
+                  <option value="10:00">10:00 a.m.</option>
+                  <option value="11:00">11:00 a.m.</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" id="btnCancel">Cancelar</button>
+              <button type="button" class="btn btn-outline" id="btnAgendar">Agendar cita</button>
+              <button type="submit" class="btn btn-primary" id="btnSave">Guardar cita</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TARJETA: CALENDARIO DE CITAS -->
+        <div class="card card-calendar">
+          <div class="calendar-header">
+            <div class="calendar-title-group">
+              <i class="fa-regular fa-calendar-days text-blue"></i>
+              <h3>Calendario de citas</h3>
+            </div>
+            <div class="calendar-legend">
+              <span class="legend-item"><span class="dot dot-disponible"></span>Disponible</span>
+              <span class="legend-item"><span class="dot dot-ocupado"></span>Ocupado</span>
+              <span class="legend-item"><span class="dot dot-hoy"></span>Fecha</span>
+            </div>
+          </div>
+
+          <!-- NAVEGACIÓN DE MES -->
+          <div class="calendar-nav">
+            <button type="button" class="btn-cal-nav" id="prevMonth" title="Mes anterior">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span class="current-month-year" id="monthYearText"></span>
+            <button type="button" class="btn-cal-nav" id="nextMonth" title="Mes siguiente">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- DÍAS DE LA SEMANA -->
+          <div class="calendar-grid">
+            <div class="day-name">Lun</div>
+            <div class="day-name">Mar</div>
+            <div class="day-name">Mié</div>
+            <div class="day-name">Jue</div>
+            <div class="day-name">Vie</div>
+            <div class="day-name">Sáb</div>
+            <div class="day-name">Dom</div>
+          </div>
+
+          <!-- DÍAS DINÁMICOS CARGADOS POR JS -->
+          <div class="calendar-days" id="calendarDays"></div>
+        </div>
+
+      </section>
+
+      <!-- SECCIÓN INFERIOR: TABLA DE CITAS PROGRAMADAS -->
+      <section class="card card-table">
+        <div class="table-header-controls">
+          <div class="card-title">
+            <i class="fa-regular fa-calendar-check text-blue"></i>
+            <h2>Citas programadas</h2>
+          </div>
+
+          <div class="table-filters">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="searchAppt" placeholder="Buscar cita...">
+            </div>
+            <select id="statusFilter">
+              <option value="all">Todos los estados</option>
+              <option value="confirmada">Confirmada</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="cancelada">Cancelada</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Paciente</th>
+                <th>Médico</th>
+                <th>Motivo de consulta</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentsTableBody">
+              <tr>
+                <td>15/05/2026</td>
+                <td>08:00 a.m.</td>
+                <td class="font-bold">Maria González</td>
+                <td>Dr. Carlos Méndez</td>
+                <td>Control general</td>
+                <td><span class="badge badge-success">Confirmada</span></td>
+                <td class="actions-cell">
+                  <button class="btn-icon" title="Ver"><i class="fa-regular fa-eye"></i></button>
+                  <button class="btn-icon" title="Editar"><i class="fa-regular fa-pen-to-square"></i></button>
+                  <button class="btn-icon" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>15/05/2026</td>
+                <td>09:30 a.m.</td>
+                <td class="font-bold">Luis Martínez</td>
+                <td>Dra. Mariana López</td>
+                <td>Consulta por fiebre</td>
+                <td><span class="badge badge-success">Confirmada</span></td>
+                <td class="actions-cell">
+                  <button class="btn-icon" title="Ver"><i class="fa-regular fa-eye"></i></button>
+                  <button class="btn-icon" title="Editar"><i class="fa-regular fa-pen-to-square"></i></button>
+                  <button class="btn-icon" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>15/05/2026</td>
+                <td>11:00 a.m.</td>
+                <td class="font-bold">Ana Torres</td>
+                <td>Dr. Alberto Torres</td>
+                <td>Seguimiento</td>
+                <td><span class="badge badge-warning">Pendiente</span></td>
+                <td class="actions-cell">
+                  <button class="btn-icon" title="Ver"><i class="fa-regular fa-eye"></i></button>
+                  <button class="btn-icon" title="Editar"><i class="fa-regular fa-pen-to-square"></i></button>
+                  <button class="btn-icon" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>16/05/2026</td>
+                <td>08:30 a.m.</td>
+                <td class="font-bold">José Ramírez</td>
+                <td>Dra. Mariana López</td>
+                <td>Dolor de cabeza</td>
+                <td><span class="badge badge-success">Confirmada</span></td>
+                <td class="actions-cell">
+                  <button class="btn-icon" title="Ver"><i class="fa-regular fa-eye"></i></button>
+                  <button class="btn-icon" title="Editar"><i class="fa-regular fa-pen-to-square"></i></button>
+                  <button class="btn-icon" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="Agenda de Citas.js"></script>
+</body>
+</html>

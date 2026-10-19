@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGEMED - Iniciar Sesión</title>
+  <link rel="stylesheet" href="Iniciar Sesión.css">
+  <!-- Fuentes e Iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="main-wrapper">
+    <div class="card-container">
+      
+      <!-- Panel Izquierdo con fondo de clínica -->
+      <div class="left-panel">
+        <div class="left-content">
+          <img src="Imagenes/LOGO_SIGEMED.png" alt="SIGEMED Logo" class="brand-logo">
+          <p class="slogan">Tecnología que organiza la salud, innovación que mejora vidas.</p>
+        </div>
+      </div>
+
+      <!-- Panel Derecho (Formulario) -->
+      <div class="right-panel">
+        <h1 class="title">Iniciar Sesión</h1>
+        <p class="subtitle">Ingresa tus credenciales para acceder al sistema</p>
+
+        <!-- Mensaje de Error en Credenciales -->
+        <div id="error-message" class="error-msg">Correo o contraseña incorrectos.</div>
+
+        <!-- Formulario configurado con action y method para PHP -->
+        <form class="login-form" id="loginForm" action="login.php" method="POST">
+          
+          <!-- Campo Correo -->
+          <div class="input-card">
+            <label class="field-label">Correo Electrónico</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-envelope icon"></i>
+              <input type="email" id="email" name="correo" placeholder="Ejemplo@gmail.com" required>
+            </div>
+          </div>
+
+          <!-- Campo Contraseña -->
+          <div class="input-card">
+            <label class="field-label">Contraseña</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock icon"></i>
+              <input type="password" id="password" name="contraseña" placeholder="******" required>
+            </div>
+          </div>
+
+          <!-- Botón Iniciar Sesión -->
+          <button type="submit" class="btn-submit">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Iniciar Sesión
+          </button>
+
+          <!-- Link Olvidaste contraseña -->
+          <div class="forgot-container">
+            <a href="recuperar_contrasena.html" class="forgot-link">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <!-- Caja de Acceso Seguro -->
+          <div class="security-box">
+            <i class="fa-regular fa-circle-check security-icon"></i>
+            <div class="security-text">
+              <strong>Acceso Seguro</strong>
+              <p>Tus datos están protegidos con encriptación de nivel hospitalario</p>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom-bar"></div>
+
+  <!-- ARCHIVO JAVASCRIPT SEPARADO -->
+  <script src="Iniciar Sesión.js"></script>
+
+</body>
+</html>

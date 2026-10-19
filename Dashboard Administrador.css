@@ -1,0 +1,406 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #f0f4f9;
+    color: #2c3e50;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    background-color: #001f5c;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 12px;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.sidebar-logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1a48af;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #c9d6ea;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.menu-item:hover, .menu-item.active {
+    background-color: #0d3282;
+    color: #ffffff;
+    border-color: #1a48af;
+}
+
+.sidebar-footer {
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px;
+    font-size: 13px;
+    justify-content: center;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    padding: 25px 35px;
+    overflow-y: auto;
+}
+
+/* TOP HEADER */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header-title h1 {
+    font-size: 26px;
+    color: #001f5c;
+    font-weight: 700;
+}
+
+.header-title p {
+    font-size: 14px;
+    color: #556070;
+}
+
+.user-highlight {
+    color: #0056ff;
+    font-weight: 600;
+}
+
+.check-icon {
+    color: #0056ff;
+    font-size: 12px;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.notification-icon {
+    font-size: 18px;
+    color: #0056ff;
+    cursor: pointer;
+}
+
+.user-avatar-circle {
+    width: 36px;
+    height: 36px;
+    background-color: #2b6bf3;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #001f5c;
+}
+
+.user-role {
+    font-size: 11px;
+    color: #7a889b;
+}
+
+/* KPI CARDS */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.kpi-card {
+    border-radius: 12px;
+    padding: 18px 20px;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card-blue { background: linear-gradient(135deg, #003399, #001a4d); }
+.card-green { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+.card-purple { background: linear-gradient(135deg, #a569bd, #8e44ad); }
+.card-orange { background: linear-gradient(135deg, #f39c12, #e67e22); }
+
+.kpi-icon {
+    background: rgba(255, 255, 255, 0.2);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.kpi-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi-title {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.kpi-value {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 2px 0;
+}
+
+.kpi-trend {
+    font-size: 11px;
+    opacity: 0.85;
+}
+
+/* LAYOUT 2 COLUMNAS */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 22px;
+}
+
+.left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.panel-box {
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #dce4ec;
+    padding: 20px;
+}
+
+.panel-header {
+    margin-bottom: 16px;
+}
+
+.panel-header h3 {
+    font-size: 15px;
+    color: #001f5c;
+    font-weight: 600;
+}
+
+.text-blue { color: #0056ff; }
+.header-between { display: flex; justify-content: space-between; align-items: center; }
+
+.select-filter {
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    outline: none;
+    color: #444;
+}
+
+/* TABLA */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+}
+
+.data-table th {
+    background-color: #f7f9fc;
+    color: #556070;
+    text-align: left;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.data-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-sm {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+}
+
+.avatar-blue { background-color: #92bbf7; }
+.avatar-orange { background-color: #fbc28b; }
+.avatar-purple { background-color: #d8b2f8; }
+
+.text-muted { color: #8896ab; font-size: 11px; }
+
+/* BADGES DE ROL */
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-medico { background-color: #d4f8e3; color: #1e824c; }
+.badge-enfermera { background-color: #d6e4ff; color: #1d4ed8; }
+.badge-farmacia { background-color: #ffe3d1; color: #d97706; }
+.badge-laboratorio { background-color: #f3e8ff; color: #7e22ce; }
+
+/* ALERTAS */
+.alerts-panel { display: flex; flex-direction: column; gap: 12px; }
+
+.alert-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    gap: 14px;
+}
+
+.alert-danger { background-color: #ffe3e3; }
+.alert-warning { background-color: #fff4cc; }
+
+.alert-icon { font-size: 20px; }
+.danger-icon { color: #e74c3c; }
+.warning-icon { color: #f1c40f; }
+
+.alert-content { flex: 1; }
+.alert-content strong { font-size: 13px; color: #2c3e50; display: block; }
+.alert-content p { font-size: 11px; color: #667085; }
+
+.alert-arrow { color: #8896ab; font-size: 12px; }
+
+/* GRÁFICO DE DONA Y LEYENDA */
+.chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.chart-wrapper {
+    position: relative;
+    width: 170px;
+    height: 170px;
+}
+
+.chart-center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-center-label { font-size: 11px; color: #7a889b; }
+.chart-center-val { font-size: 22px; font-weight: 700; color: #001f5c; line-height: 1; }
+.chart-center-sub { font-size: 10px; color: #7a889b; }
+
+.chart-legend { display: flex; flex-direction: column; gap: 12px; }
+
+.legend-item { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+
+.dot-blue { background-color: #0066ff; }
+.dot-teal { background-color: #1ad1a3; }
+.dot-purple { background-color: #7a5cf0; }
+.dot-orange { background-color: #ff9900; }
+
+/* ACCESOS RÁPIDOS */
+.quick-access-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.quick-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #2c3e50;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.quick-card:hover { transform: translateY(-3px); }
+
+.card-blue-light { background-color: #e0ecff; color: #0056ff; }
+.card-green-light { background-color: #dcfce7; color: #16a34a; }
+.card-purple-light { background-color: #f3e8ff; color: #9333ea; }
+.card-orange-light { background-color: #ffedd5; color: #ea580c; }
+
+.quick-card i { font-size: 22px; }

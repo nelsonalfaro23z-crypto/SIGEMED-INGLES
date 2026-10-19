@@ -1,0 +1,237 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor principal sin márgenes extra */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  width: 100%;
+}
+
+/* Tarjeta principal ocupando todo el ancho superior */
+.card-container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 40px);
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Panel Izquierdo con fondo de la clínica */
+.left-panel {
+  flex: 1;
+  background: linear-gradient(rgba(195, 226, 246, 0.72), rgba(195, 226, 246, 0.72)),
+              url('Imagenes/fondo-clinica.jpg.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+}
+
+.brand-logo {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.slogan {
+  color: #0b2559;
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+/* Panel Derecho */
+.right-panel {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  color: #001f60;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #2b394a;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Mensaje de Error de Credenciales */
+.error-msg {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 10px 14px;
+  border: 1px solid #f5c2c7;
+  border-radius: 6px;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 18px;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  display: none; /* Se activa desde el JavaScript solo si fallan las credenciales */
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 450px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Tarjeta contenedora de cada input */
+.input-card {
+  border: 1px solid #c4cdd5;
+  border-radius: 8px;
+  padding: 10px 14px;
+  position: relative;
+}
+
+.field-label {
+  display: block;
+  color: #001f60;
+  font-weight: 600;
+  font-size: 12.5px;
+  margin-bottom: 4px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.input-wrapper .icon {
+  color: #001f60;
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+}
+
+.input-wrapper input {
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 100%;
+  outline: none;
+  font-size: 13px;
+  color: #333;
+}
+
+.input-wrapper input::placeholder {
+  color: #b5b5b5;
+}
+
+.input-wrapper input:focus {
+  border-color: #001f60;
+}
+
+/* Botón Iniciar Sesión */
+.btn-submit {
+  background-color: #002166;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #001747;
+}
+
+/* Link Olvidaste tu contraseña */
+.forgot-container {
+  text-align: center;
+  margin: 2px 0 8px 0;
+}
+
+.forgot-link {
+  color: #001f60;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Cuadro de Seguridad */
+.security-box {
+  background-color: #eceff4;
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 5px;
+}
+
+.security-icon {
+  font-size: 30px;
+  color: #001f60;
+}
+
+.security-text strong {
+  display: block;
+  color: #001f60;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.security-text p {
+  color: #556070;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+/* Barra inferior azul oscuro */
+.bottom-bar {
+  height: 40px;
+  background-color: #001b54;
+  width: 100%;
+}

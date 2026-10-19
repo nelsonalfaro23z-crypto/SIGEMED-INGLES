@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGEMED - Agenda de Citas Enfermería</title>
+    <link rel="stylesheet" href="Agenda de Citas_Enfer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .autocomplete-wrapper { position: relative; width: 100%; }
+        .autocomplete-results {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background: #fff; border: 1px solid #d0d5dd; border-radius: 8px;
+            max-height: 180px; overflow-y: auto; z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;
+        }
+        .autocomplete-item {
+            padding: 8px 12px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #f1f5f9;
+        }
+        .autocomplete-item:hover { background-color: #f1f5f9; }
+        
+        /* Colores del calendario */
+        .day-number.day-ocupado { background-color: #fee2e2 !important; color: #991b1b !important; font-weight: bold; border: 1px solid #f87171; }
+        .day-number.day-disponible { background-color: #d1fae5 !important; color: #065f46 !important; }
+        .day-number.is-today { outline: 2px solid #175cd3; font-weight: bold; }
+        .day-number.day-selected { background-color: #175cd3 !important; color: #ffffff !important; }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR OFICIAL SIGEMED -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="Dashboard Recepción.php">
+                <img src="Imagenes/LOGO_SIGEMED-FONDO.jpeg" alt="SIGEMED Logo" class="sidebar-logo">
+            </a>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="Dashboard Recepción.php" class="menu-item"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="Nuevo Paciente.html" class="menu-item"><i class="fa-solid fa-user-plus"></i> Nuevo Paciente</a>
+            <a href="Agenda de Citas_Enfer.html" class="menu-item active"><i class="fa-solid fa-calendar-check"></i> Agenda de Citas</a>
+            <a href="Triaje.html" class="menu-item"><i class="fa-solid fa-notes-medical"></i> Triaje</a>
+            <a href="Expedientes_enfer.html" class="menu-item"><i class="fa-solid fa-folder-open"></i> Expedientes</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="Iniciar Sesión.html" class="btn-logout" id="btnLogout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-title">
+                <div class="page-title-row">
+                    <a href="Dashboard Recepción.php" class="btn-back-header" title="Volver al Dashboard">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                    <h1>Agenda de Citas</h1>
+                </div>
+                <p class="subtitle-text">Programa y gestiona las citas médicas de los pacientes</p>
+            </div>
+            
+            <div class="header-right">
+                <a href="Notificaciones_enfer.html" class="notification-badge" title="Ver Notificaciones">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="dot"></span>
+                </a>
+                <a href="Mi_Perfil.html" class="user-profile" style="text-decoration: none; color: inherit; cursor: pointer;">
+                    <div class="avatar-circle"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-details">
+                        <span class="user-name">Maria López <i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="user-sub">Recepción / Enfermería</span>
+                    </div>
+                </a>
+            </div>
+        </header>
+
+        <!-- FILA SUPERIOR: FORMULARIO Y CALENDARIO -->
+        <div class="citas-grid-top">
+            
+            <!-- PANEL: AGENDA NUEVA CITA -->
+            <section class="panel-box">
+                <div class="panel-header-icon">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                    <h2>Agenda nueva cita</h2>
+                </div>
+
+                <form id="appointmentForm" class="form-cita-grid">
+                    <input type="hidden" id="idPacienteInput" name="id_paciente" required>
+
+                    <div class="form-group full-width">
+                        <label for="selectPaciente">Paciente</label>
+                        <div class="autocomplete-wrapper">
+                            <div class="input-with-icon">
+                                <input type="text" id="selectPaciente" placeholder="Buscar paciente por nombre o número de expediente..." autocomplete="off" required>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <div id="resultsPaciente" class="autocomplete-results"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="selectMedicoCita">Médico</label>
+                        <select id="selectMedicoCita" class="custom-select" required>
+                            <option value="">Seleccionar médico</option>
+                            <option value="Dr. Carlos Méndez">Dr. Carlos Méndez</option>
+                            <option value="Dra. Ana Rivas">Dra. Ana Rivas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateInput">Fecha</label>
+                        <div class="input-with-icon">
+                            <input type="date" id="dateInput" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeInput">Hora</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="timeInput" placeholder="Ej. 08:30 a.m." required>
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-actions-row">
+                        <button type="button" id="btnCancel" class="btn-cita btn-cancelar-cita">Cancelar</button>
+                        <button type="submit" class="btn-cita btn-guardar-cita">Guardar cita</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- PANEL: CALENDARIO DE CITAS -->
+            <section class="panel-box">
+                <div class="panel-header-icon calendar-header">
+                    <div class="title-with-icon">
+                        <i class="fa-regular fa-calendar"></i>
+                        <h2>Calendario de citas</h2>
+                    </div>
+                    <div class="calendar-nav">
+                        <button type="button" class="btn-cal-arrow" id="prevMonth"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span class="cal-month-title" id="monthYearText"></span>
+                        <button type="button" class="btn-cal-arrow" id="nextMonth"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="calendar-legend">
+                    <div class="legend-item"><span class="dot-legend dot-disponible"></span> Disponible</div>
+                    <div class="legend-item"><span class="dot-legend dot-ocupado"></span> Ocupado</div>
+                    <div class="legend-item"><span class="dot-legend dot-tu-cita"></span> Día actual</div>
+                </div>
+
+                <div class="calendar-grid">
+                    <div class="day-name">Lun</div>
+                    <div class="day-name">Mar</div>
+                    <div class="day-name">Mié</div>
+                    <div class="day-name">Jue</div>
+                    <div class="day-name">Vie</div>
+                    <div class="day-name">Sáb</div>
+                    <div class="day-name">Dom</div>
+                </div>
+
+                <div class="calendar-grid" id="calendarDays"></div>
+            </section>
+
+        </div>
+
+        <!-- FILA INFERIOR: TABLA DE CITAS PROGRAMADAS -->
+        <section class="panel-box">
+            <div class="table-header-flex">
+                <div class="panel-header-icon no-margin">
+                    <i class="fa-solid fa-list-check"></i>
+                    <h2>Citas programadas</h2>
+                </div>
+                <div class="table-controls">
+                    <div class="search-box-table">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="inputBuscarTabla" placeholder="Buscar cita...">
+                    </div>
+                    <select class="select-filter" id="selectFiltroEstado">
+                        <option value="todos">Todos los estados</option>
+                        <option value="Confirmada">Confirmada</option>
+                        <option value="Pendiente">Pendiente</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>HORA</th>
+                            <th>PACIENTE</th>
+                            <th>MÉDICO</th>
+                            <th>MOTIVO DE CONSULTA</th>
+                            <th>ESTADO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody">
+                        <!-- Se llena dinámicamente con los registros de la base de datos -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-footer-flex">
+                <span id="txtTotalCitas">Cargando citas...</span>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="Agenda de Citas_Enfer.js?v=6"></script>
+</body>
+</html>

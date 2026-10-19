@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGEMED - Registrar un Nuevo Paciente</title>
+  <link rel="stylesheet" href="Nuevo Paciente.css">
+  <!-- Fuentes e Iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="main-wrapper">
+    <div class="card-container">
+
+      <!-- HEADER TOP -->
+      <header class="top-header">
+        <div class="header-left">
+          <button class="btn-back" id="btnBack" type="button" onclick="window.location.href='Dashboard Recepción.php'">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div>
+            <h1 class="title">Registrar un Nuevo Paciente</h1>
+            <p class="subtitle">Ingrese la información básica para crear el nuevo expediente del paciente</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="search-box-top">
+            <input type="text" placeholder="Buscar paciente">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+
+          <div class="notification-badge">
+            <i class="fa-regular fa-bell"></i>
+            <span class="dot"></span>
+          </div>
+
+          <div class="user-profile">
+            <div class="avatar-circle"><i class="fa-solid fa-user"></i></div>
+            <div class="user-details">
+              <span class="user-name">Maria López <i class="fa-solid fa-chevron-down"></i></span>
+              <span class="user-sub">Recepción / Enfermería</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- LAYOUT PRINCIPAL DOS COLUMNAS -->
+      <form id="patientForm" class="patient-grid" action="guardar_paciente.php" method="POST">
+
+        <!-- COLUMNA IZQUIERDA: FORMULARIOS -->
+        <div class="left-column">
+
+          <!-- DATOS PERSONALES -->
+          <div class="panel-section">
+            <h3 class="section-title"><i class="fa-regular fa-user"></i> Datos personales</h3>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expNumber">N° de expediente</label>
+                <input type="text" id="expNumber" name="num_expediente" placeholder="Ej. EXP-000123">
+                <span class="input-hint">Se generará automáticamente si se deja en blanco</span>
+              </div>
+
+              <div class="form-group">
+                <label for="firstName">Nombre(s)</label>
+                <input type="text" id="firstName" name="nombre" placeholder="Ingrese el nombre del paciente" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="lastName">Apellido(s)</label>
+                <input type="text" id="lastName" name="apellido" placeholder="Ingrese los apellidos del paciente" required>
+              </div>
+
+              <div class="form-group">
+                <label for="birthDate">Fecha de nacimiento</label>
+                <input type="date" id="birthDate" name="fecha_nacimiento" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="age">Edad</label>
+                <input type="number" id="age" name="edad" placeholder="Ej.30">
+              </div>
+
+              <div class="form-group">
+                <label for="gender">Sexo</label>
+                <div class="select-wrapper">
+                  <select id="gender" name="sexo" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down select-icon"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="text" id="phone" name="telefono" placeholder="Ingrese número de teléfono">
+              </div>
+
+              <div class="form-group">
+                <label for="address">Dirección</label>
+                <input type="text" id="address" name="direccion" placeholder="Col. El Centro, #123">
+              </div>
+            </div>
+          </div>
+
+          <!-- INFORMACIÓN MÉDICA BÁSICA -->
+          <div class="panel-section">
+            <h3 class="section-title"><i class="fa-solid fa-stethoscope"></i> Información médica básica</h3>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="allergies">Alergias conocidas</label>
+                <input type="text" id="allergies" name="alergias" placeholder="Ej. Penicilina, látex, mariscos, etc.">
+              </div>
+
+              <div class="form-group">
+                <label for="medicalHistory">Antecedentes médicos</label>
+                <input type="text" id="medicalHistory" name="antecedentes" placeholder="Ingrese antecedentes relevantes">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="previousDiseases">Enfermedades previas</label>
+                <input type="text" id="previousDiseases" name="enfermedades_previas" placeholder="Ej. hipertensión, diabetes, asma, etc.">
+              </div>
+
+              <div class="form-group">
+                <label for="consultReason">Motivo de consulta</label>
+                <input type="text" id="consultReason" name="motivo_consulta" placeholder="Ingresar información previamente descrita">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COLUMNA DERECHA: TARJETA DE VISTA PREVIA -->
+        <div class="right-column">
+          <div class="panel-section right-card-container">
+
+            <div class="preview-card">
+              <div class="preview-header-bg"></div>
+              <div class="preview-avatar">
+                <i class="fa-solid fa-user"></i>
+              </div>
+
+              <div class="preview-info-grid">
+                <div class="preview-row">
+                  <span class="preview-label">N° de expediente:</span>
+                  <span class="preview-value" id="prevExp">—</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Nombre completo:</span>
+                  <span class="preview-value" id="prevName">—</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Edad:</span>
+                  <span class="preview-value" id="prevAge">—</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Sexo:</span>
+                  <span class="preview-value" id="prevGender">—</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Teléfono:</span>
+                  <span class="preview-value" id="prevPhone">—</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Dirección:</span>
+                  <span class="preview-value" id="prevAddress">—</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Fecha de registro:</span>
+                  <span class="preview-value" id="prevRegDate">—</span>
+                </div>
+                <div class="preview-row">
+                  <span class="preview-label">Estado:</span>
+                  <span class="badge-status-green">Nuevo paciente</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CUADRO DE NOTA IMPORTANTE -->
+            <div class="info-alert-box">
+              <i class="fa-circle-info fa-regular alert-icon"></i>
+              <div>
+                <strong>Importante</strong>
+                <p>Al guardar, se creará el expediente del paciente y podrá continuar con el proceso de triaje.</p>
+              </div>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="form-actions-row">
+              <button type="button" class="btn-cancel" id="btnCancel" onclick="window.location.href='Dashboard Recepción.php'">
+                <i class="fa-solid fa-xmark"></i> Cancelar
+              </button>
+              <button type="button" class="btn-clear" id="btnClear">
+                <i class="fa-solid fa-broom"></i> Limpiar
+              </button>
+              <button type="submit" class="btn-submit">
+                Guardar paciente
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script src="Nuevo Paciente.js?v=2"></script>
+</body>
+</html>

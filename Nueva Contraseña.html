@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGEMED - Nueva Contraseña</title>
+  <!-- Fuentes e Iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="Nueva Contraseña.css">
+</head>
+<body>
+
+  <div class="card-container">
+    <!-- Ícono Superior -->
+    <div class="header-icon">
+      <i class="fa-solid fa-lock"></i>
+    </div>
+
+    <!-- Título y Descripción -->
+    <h2>Nueva Contraseña</h2>
+    <p class="description">Ingresa y confirma tu nueva contraseña segura para acceder al sistema.</p>
+
+    <!-- Mensaje de Error (si las contraseñas no coinciden) -->
+    <div id="error-message" class="error-msg">Las contraseñas no coinciden. Inténtalo de nuevo.</div>
+
+    <!-- Formulario -->
+    <form class="new-pass-form" id="newPassForm">
+      
+      <!-- Campo Nueva Contraseña -->
+      <div class="form-group">
+        <label for="pass1">Nueva Contraseña:</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock icon"></i>
+          <input type="password" id="pass1" placeholder="••••••••" required>
+        </div>
+      </div>
+
+      <!-- Campo Confirmar Contraseña -->
+      <div class="form-group">
+        <label for="pass2">Confirmar Contraseña:</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock icon"></i>
+          <input type="password" id="pass2" placeholder="••••••••" required>
+        </div>
+      </div>
+
+      <!-- Botón Guardar -->
+      <button type="submit" class="btn-submit">
+        <i class="fa-solid fa-floppy-disk"></i> Guardar Contraseña
+      </button>
+
+    </form>
+
+    <!-- Insignia de Seguridad Hospitalaria -->
+    <div class="security-badge">
+      <i class="fa-solid fa-shield-halved"></i>
+      <div class="text">
+        <span class="title">Acceso Seguro</span>
+        <span class="sub">Tus datos están protegidos con encriptación de nivel hospitalario</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript para validar que coincidan las contraseñas -->
+  <script>
+    document.getElementById('newPassForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const p1 = document.getElementById('pass1').value;
+      const p2 = document.getElementById('pass2').value;
+      const errorMsg = document.getElementById('error-message');
+
+      if (p1 !== p2) {
+        errorMsg.style.display = "block";
+      } else {
+        errorMsg.style.display = "none";
+        alert("¡Contraseña restablecida con éxito!");
+        window.location.href = "Iniciar Sesión.html";
+      }
+    });
+  </script>
+
+</body>
+</html>

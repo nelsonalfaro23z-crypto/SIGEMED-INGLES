@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGEMED - Triaje / Evaluación Inicial</title>
+    <link rel="stylesheet" href="Triaje.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- SIDEBAR OFICIAL SIGEMED -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="Dashboard Recepción.php">
+                <img src="Imagenes/LOGO_SIGEMED-FONDO.jpeg" alt="SIGEMED Logo" class="sidebar-logo">
+            </a>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="Dashboard Recepción.php" class="menu-item"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="Nuevo Paciente.html" class="menu-item"><i class="fa-solid fa-user-plus"></i> Pacientes</a>
+            <a href="Agenda de Citas_Enfer.html" class="menu-item"><i class="fa-solid fa-calendar-check"></i> Citas</a>
+            <a href="Triaje.html" class="menu-item active"><i class="fa-solid fa-notes-medical"></i> Triaje</a>
+            <a href="Expedientes_enfer.html" class="menu-item"><i class="fa-solid fa-folder-open"></i> Expedientes</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="Iniciar Sesión.html" class="btn-logout" id="btnLogout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-left-title">
+                <div class="page-title-row">
+                    <a href="Dashboard Recepción.php" class="btn-back-header">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                    <h1>Triaje - Evaluación inicial del paciente</h1>
+                </div>
+                <p class="subtitle-text">Registre los signos vitales y determine el estado del paciente.</p>
+            </div>
+
+            <!-- BÚSQUEDA DE PACIENTE -->
+            <div class="header-search-wrapper">
+                <div class="search-box-top">
+                    <input type="text" id="inputBuscarPaciente" placeholder="Buscar paciente..." autocomplete="off">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div id="resultsPaciente" class="autocomplete-results"></div>
+            </div>
+
+            <div class="header-right">
+                <a href="Notificaciones_enfer.html" class="notification-badge" title="Ver Notificaciones">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="dot"></span>
+                </a>
+                <a href="Mi_Perfil.html" class="user-profile" style="text-decoration: none; color: inherit;">
+                    <div class="avatar-circle"><i class="fa-solid fa-user"></i></div>
+                    <div class="user-details">
+                        <span class="user-name">Maria López <i class="fa-solid fa-chevron-right"></i></span>
+                        <span class="user-sub">Recepción / Enfermería</span>
+                    </div>
+                </a>
+            </div>
+        </header>
+
+        <!-- FORMULARIO DE TRIAJE GRID -->
+        <form id="formTriaje" class="triaje-grid">
+            <input type="hidden" id="idPacienteInput" name="id_paciente">
+
+            <!-- COLUMNA 1: INFORMACIÓN DEL PACIENTE -->
+            <section class="panel-box info-paciente-panel">
+                <div class="panel-header-icon">
+                    <i class="fa-regular fa-user"></i>
+                    <h2>Información del paciente</h2>
+                </div>
+
+                <div class="info-field">
+                    <label>N° de expediente:</label>
+                    <p id="lblExpediente" class="txt-bold-exp">EXP-00000 - 0</p>
+                </div>
+
+                <div class="info-field">
+                    <label>Nombre:</label>
+                    <p id="lblNombre" class="txt-bold-name">Seleccione un paciente</p>
+                </div>
+
+                <div class="info-field">
+                    <label>Edad:</label>
+                    <p id="lblEdad">--</p>
+                </div>
+
+                <div class="info-field">
+                    <label>Motivo de consulta:</label>
+                    <p id="lblMotivo" class="txt-bold-motivo">--</p>
+                </div>
+
+                <div class="info-field">
+                    <label>Hora de ingreso:</label>
+                    <p id="lblHoraIngreso">--:-- AM</p>
+                </div>
+
+                <button type="button" class="btn-ver-expediente" onclick="window.location.href='Expedientes_enfer.html'">
+                    Ver expediente completo
+                </button>
+            </section>
+
+            <!-- COLUMNA 2: SIGNOS VITALES -->
+            <section class="panel-box signos-vitales-panel">
+                <div class="panel-header-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <h2>Signos vitales</h2>
+                </div>
+
+                <div class="signo-row">
+                    <div class="signo-label">
+                        <i class="fa-solid fa-stethoscope icon-signo"></i>
+                        <span>Presión Arterial</span>
+                    </div>
+                    <div class="signo-input-group">
+                        <input type="text" name="presion_arterial" placeholder="120/80">
+                        <span class="unit">mmHg</span>
+                    </div>
+                </div>
+
+                <div class="signo-row">
+                    <div class="signo-label">
+                        <i class="fa-solid fa-temperature-three-quarters icon-signo"></i>
+                        <span>Temperatura</span>
+                    </div>
+                    <div class="signo-input-group">
+                        <input type="text" name="temperatura" placeholder="36.5">
+                        <span class="unit">°C</span>
+                    </div>
+                </div>
+
+                <div class="signo-row">
+                    <div class="signo-label">
+                        <i class="fa-solid fa-heart-circle-check icon-signo"></i>
+                        <span>Frecuencia Cardiaca</span>
+                    </div>
+                    <div class="signo-input-group">
+                        <input type="text" name="frecuencia_cardiaca" placeholder="75">
+                        <span class="unit">lpm</span>
+                    </div>
+                </div>
+
+                <div class="signo-row">
+                    <div class="signo-label">
+                        <i class="fa-solid fa-lungs icon-signo"></i>
+                        <span>Frecuencia Respiratoria</span>
+                    </div>
+                    <div class="signo-input-group">
+                        <input type="text" name="frecuencia_respiratoria" placeholder="18">
+                        <span class="unit">rpm</span>
+                    </div>
+                </div>
+
+                <div class="signo-row">
+                    <div class="signo-label">
+                        <i class="fa-solid fa-weight-scale icon-signo"></i>
+                        <span>Peso</span>
+                    </div>
+                    <div class="signo-input-group">
+                        <input type="text" name="peso" placeholder="70">
+                        <span class="unit">kg</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUMNA 3: ESTADO DEL PACIENTE Y OBSERVACIONES -->
+            <section class="panel-box estado-panel">
+                <div class="panel-header-title">
+                    <h2>Estado del Paciente (Prioridad)</h2>
+                    <p class="sub-label">Seleccione el nivel de prioridad según la evaluación</p>
+                </div>
+
+                <div class="prioridad-options">
+                    <!-- Opción Crítico -->
+                    <label class="prioridad-card card-critico selected">
+                        <input type="radio" name="prioridad" value="Caso Grave / Emergencia" checked>
+                        <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="card-text">
+                            <strong>Caso Grave / Emergencia</strong>
+                            <small class="tag-atencion">Atención inmediata</small>
+                            <small>El paciente será atendido de inmediato</small>
+                        </div>
+                        <div class="radio-circle"></div>
+                    </label>
+
+                    <!-- Opción Delicado -->
+                    <label class="prioridad-card card-delicado">
+                        <input type="radio" name="prioridad" value="Caso Delicado">
+                        <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <div class="card-text">
+                            <strong>Caso Delicado</strong>
+                            <small class="tag-atencion">Atención rápida</small>
+                            <small>El paciente será atendido pronto</small>
+                        </div>
+                        <div class="radio-circle"></div>
+                    </label>
+
+                    <!-- Opción Normal -->
+                    <label class="prioridad-card card-normal">
+                        <input type="radio" name="prioridad" value="Consulta Normal">
+                        <div class="card-icon"><i class="fa-regular fa-clock"></i></div>
+                        <div class="card-text">
+                            <strong>Consulta Normal</strong>
+                            <small class="tag-atencion">Por turno</small>
+                            <small>El paciente espera su turno según la cola</small>
+                        </div>
+                        <div class="radio-circle"></div>
+                    </label>
+                </div>
+
+                <div class="observaciones-box">
+                    <label>Observaciones adicionales</label>
+                    <textarea name="observaciones" rows="3" placeholder="Ingrese observaciones relevantes del paciente..."></textarea>
+                </div>
+            </section>
+
+            <!-- COLUMNA 4: RESULTADO DEL TRIAJE Y MÉDICO -->
+            <section class="panel-box resultado-panel">
+                <div class="date-time-bar">
+                    <div class="pill-date"><i class="fa-regular fa-calendar"></i> <span id="txtFechaActual">11/10/2026</span></div>
+                    <div class="pill-time"><i class="fa-regular fa-clock"></i> <span id="txtHoraActual">07:00 AM</span></div>
+                </div>
+
+                <h3 class="title-resultado">Resultado del triaje</h3>
+
+                <div class="resumen-prioridad-box box-critico" id="boxResumenPrioridad">
+                    <span class="sub-title">Prioridad asignada</span>
+                    <div class="badge-big-prioridad" id="badgePrioridadText">
+                        <i class="fa-solid fa-triangle-exclamation"></i> CRÍTICO
+                    </div>
+                    <span class="desc-atencion" id="descAtencionText">Atención inmediata</span>
+                </div>
+
+                <div class="notificar-medico-box">
+                    <div class="notificar-info">
+                        <strong>Notificar al médico</strong>
+                        <small>El paciente será enviado automáticamente al primer lugar de la cola médica</small>
+                    </div>
+                    <span class="badge-activada"><i class="fa-solid fa-check"></i> Activada</span>
+                </div>
+
+                <div class="destino-info">
+                    <label>Destino:</label>
+                    <strong id="txtDestino">Sala de espera - Prioridad 1</strong>
+                </div>
+
+                <div class="select-medico-box">
+                    <select name="medico_asignado" id="selectMedicoTriaje" class="custom-select" required>
+                        <option value="">Seleccione al médico</option>
+                        <option value="Dr. Carlos Méndez">Dr. Carlos Méndez</option>
+                        <option value="Dra. Ana Rivas">Dra. Ana Rivas</option>
+                    </select>
+                </div>
+
+                <div class="form-actions-triaje">
+                    <button type="button" id="btnCancelarTriaje" class="btn-triaje btn-cancelar">
+                        <i class="fa-solid fa-xmark"></i> Cancelar
+                    </button>
+                    <button type="submit" name="accion_guardar" value="solo_guardar" class="btn-triaje btn-guardar">
+                        Guardar el triaje
+                    </button>
+                    <button type="submit" name="accion_guardar" value="guardar_enviar" class="btn-triaje btn-enviar">
+                        Guardar y enviar al médico
+                    </button>
+                </div>
+            </section>
+
+        </form>
+
+    </main>
+
+    <script src="Triaje.js?v=1"></script>
+</body>
+</html>
